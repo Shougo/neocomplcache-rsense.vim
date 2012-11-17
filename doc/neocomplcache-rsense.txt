@@ -1,0 +1,93 @@
+*neocomplcache-rsense.txt*
+		The neocomplcache source for RSense
+
+Version: 0.1
+Author: Shougo <Shougo.Matsu@gmail.com>
+License: MIT license  {{{
+    Permission is hereby granted, free of charge, to any person obtaining
+    a copy of this software and associated documentation files (the
+    "Software"), to deal in the Software without restriction, including
+    without limitation the rights to use, copy, modify, merge, publish,
+    distribute, sublicense, and/or sell copies of the Software, and to
+    permit persons to whom the Software is furnished to do so, subject to
+    the following conditions:
+    The above copyright notice and this permission notice shall be included
+    in all copies or substantial portions of the Software.
+
+    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+    OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+    MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+    IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
+    CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
+    TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+    SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+}}}
+
+CONTENTS			*neocomplcache-rsense-contents*
+
+Introduction		|neocomplcache-rsense-introduction|
+Install			|neocomplcache-rsense-install|
+Interface		|neocomplcache-rsense-interface|
+  Commands		  |neocomplcache-rsense-commands|
+  Variables		  |neocomplcache-rsense-variables|
+Examples		|neocomplcache-rsense-examples|
+FAQ			|neocomplcache-rsense-faq|
+Changelog		|neocomplcache-rsense-changelog|
+
+==============================================================================
+INTRODUCTION				*neocomplcache-rsense-introduction*
+
+Todo:
+
+==============================================================================
+INSTALL						*neocomplcache-rsense-install*
+
+1: Install RSense.
+
+http://cx4a.org/software/rsense/
+
+2: Install neocomplcache.
+https://github.com/Shougo/neocomplcache
+
+3: Install vimproc.
+https://github.com/Shougo/vimproc
+
+4: Extract the file and put files in your Vim directory
+   (usually ~/.vim/ or Program Files/Vim/vimfiles on Windows).
+
+==============================================================================
+INTERFACE				*neocomplcache-rsense-interface*
+
+------------------------------------------------------------------------------
+COMMANDS 					*neocomplcache-rsense-commands*
+
+------------------------------------------------------------------------------
+VARIABLES 				*neocomplcache-rsense-variables*
+
+g:neocomplcache#sources#rsense#home_directory
+				*g:neocomplcache#sources#rsense#home_directory*
+		It is $RSENSE_HOME value for neocomplcache-rsense.
+		neocomplcache-rsense searches "rsense" binary from it.
+
+		The default value is same to $RSENSE_HOME.
+
+------------------------------------------------------------------------------
+FUNCTIONS				*neocomplcache-rsense-functions*
+
+==============================================================================
+EXAMPLES					*neocomplcache-rsense-examples*
+>
+	" Set $RSENSE_HOME path.
+	let g:neocomplcache#sources#rsense#home_directory = '/opt/rsense'
+<
+==============================================================================
+FAQ						*neocomplcache-rsense-faq*
+
+==============================================================================
+CHANGELOG			*neocomplcache-rsense-changelog*
+
+2012-11-17
+- Initial version.
+
+==============================================================================
+vim:tw=78:ts=8:ft=help:norl:noet:fen:fdl=0:noet:
