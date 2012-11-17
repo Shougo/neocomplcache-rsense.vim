@@ -39,6 +39,20 @@ INTRODUCTION				*neocomplcache-rsense-introduction*
 
 Todo:
 
+Features:
+
+* Asynchronous completion using vimproc
+* Supported context filetype feature like below:
+>
+	fun! WWW() abort
+	    echo "hi"
+	endfun
+	
+	ruby << RUBYEOF
+	# You can complete by RSense.
+	line = "hello"
+	RUBYEOF
+<
 ==============================================================================
 INSTALL						*neocomplcache-rsense-install*
 
