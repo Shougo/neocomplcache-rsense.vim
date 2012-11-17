@@ -71,9 +71,12 @@ function! s:source.get_complete_words(cur_keyword_pos, cur_keyword_str)"{{{
       let result += process.stdout.read_lines(-1, 100)
 
       if neocomplcache#complete_check()
+        call process.waitpid()
         return []
       endif
     endwhile
+
+    call process.waitpid()
 
     call map(result, "neocomplcache#util#iconv(v:val, 'char', &encoding)")
   finally
