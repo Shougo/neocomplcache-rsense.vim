@@ -63,7 +63,6 @@ function! s:source.get_complete_words(cur_keyword_pos, cur_keyword_str)"{{{
           \ s:get_rsense_current_buffer_option(temp)
     call add(args, '--prefix=' . a:cur_keyword_str)
     call map(args, "neocomplcache#util#iconv(v:val, &encoding, 'char')")
-    echomsg string(args)
 
     " Async completion.
     let process = vimproc#popen2(args)
@@ -88,7 +87,6 @@ function! s:source.get_complete_words(cur_keyword_pos, cur_keyword_str)"{{{
 
   for items in filter(map(filter(result,
         \ "v:val =~# '^completion:'"), "split(v:val)[1:]"), "v:val[0] =~ '^\\h'")
-        " \ "v:val =~# '^completion:'"), "split(v:val)[1:]"), "v:val[0] =~ '^\h'")
     let candidate = { 'word': items[0], 'menu' : '[R] ' }
     if len(items) > 3
       let candidate.menu .= items[2]
