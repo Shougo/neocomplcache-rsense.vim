@@ -1,7 +1,7 @@
 "=============================================================================
 " FILE: rsense.vim
 " AUTHOR:  Shougo Matsushita <Shougo.Matsu@gmail.com>
-" Last Modified: 17 Nov 2012.
+" Last Modified: 29 Nov 2012.
 " License: MIT license  {{{
 "     Permission is hereby granted, free of charge, to any person obtaining
 "     a copy of this software and associated documentation files (the
@@ -119,7 +119,8 @@ function! s:get_rsense_current_buffer_option(filename)"{{{
 endfunction"}}}
 
 function! s:get_temp_name()"{{{
-  let filename = tempname()
+  let filename =
+        \ neocomplcache#util#substitute_path_separator(tempname())
   let range = neocomplcache#get_context_filetype_range()
   call writefile(getline(range[0][0], range[1][0]), filename)
   return filename
