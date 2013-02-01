@@ -97,6 +97,21 @@ EXAMPLES					*neocomplcache-rsense-examples*
 ==============================================================================
 FAQ						*neocomplcache-rsense-faq*
 
+Q: Complements aren't showing, why?
+A: Check if you have followed the INSTALL guide above. 
+   And if the complements doesn't show even after that, check if rsense is working, by executing
+   
+   $ /PATH/TO/rsense/COMMAND/rsense version
+
+   The version of RSense should be shown like below.
+
+   RSense 0.3
+
+   If "server is not running" is shown, delete the RSense tmp files, by executing
+
+   $ sudo rm /tmp/rsense-pid
+   $ sudo rm /tmp/rsense-socket
+
 ==============================================================================
 CHANGELOG			*neocomplcache-rsense-changelog*
 
