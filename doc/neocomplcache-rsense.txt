@@ -97,9 +97,8 @@ EXAMPLES					*neocomplcache-rsense-examples*
 ==============================================================================
 FAQ						*neocomplcache-rsense-faq*
 
-Q: Complements aren't showing, why?
-A: Check if you have followed the INSTALL guide above. 
-   And if the complements doesn't show even after that, check if rsense is working, by executing
+Q: I got all my installations and settings done, but complements aren't showing, why?
+A: Check if rsense is working, by executing
    
    $ /PATH/TO/rsense/COMMAND/rsense version
 
