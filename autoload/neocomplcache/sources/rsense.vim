@@ -1,7 +1,7 @@
 "=============================================================================
 " FILE: rsense.vim
 " AUTHOR:  Shougo Matsushita <Shougo.Matsu@gmail.com>
-" Last Modified: 29 Nov 2012.
+" Last Modified: 02 Dec 2012.
 " License: MIT license  {{{
 "     Permission is hereby granted, free of charge, to any person obtaining
 "     a copy of this software and associated documentation files (the
@@ -30,7 +30,7 @@ set cpo&vim
 call neocomplcache#util#set_default(
       \ 'g:neocomplcache#sources#rsense#home_directory', $RSENSE_HOME)
 
-function! neocomplcache#sources#rsense#define()"{{{
+function! neocomplcache#sources#rsense#define() "{{{
   return neocomplcache#util#has_vimproc() &&
         \ executable(s:get_rsense_command()) ? s:source : {}
 endfunction"}}}
@@ -41,11 +41,11 @@ let s:source = {
       \ 'filetypes' : { 'ruby' : 1 },
       \}
 
-function! s:source.initialize()"{{{
+function! s:source.initialize() "{{{
   " Initialize.
 endfunction"}}}
 
-function! s:source.get_keyword_pos(cur_text)"{{{
+function! s:source.get_keyword_pos(cur_text) "{{{
   if neocomplcache#is_auto_complete() &&
         \ a:cur_text !~ '\%([^. *\t]\.\w*\|\h\w*::\)$'
     return -1
@@ -54,7 +54,7 @@ function! s:source.get_keyword_pos(cur_text)"{{{
   return match(a:cur_text, '[^.:]*$')
 endfunction"}}}
 
-function! s:source.get_complete_words(cur_keyword_pos, cur_keyword_str)"{{{
+function! s:source.get_complete_words(cur_keyword_pos, cur_keyword_str) "{{{
   let temp = s:get_temp_name()
   try
     let args = [
@@ -102,12 +102,12 @@ function! s:source.get_complete_words(cur_keyword_pos, cur_keyword_str)"{{{
   return candidates
 endfunction"}}}
 
-function! s:get_rsense_command()"{{{
+function! s:get_rsense_command() "{{{
   return g:neocomplcache#sources#rsense#home_directory
         \ . '/bin/rsense'
 endfunction"}}}
 
-function! s:get_rsense_current_buffer_option(filename)"{{{
+function! s:get_rsense_current_buffer_option(filename) "{{{
   let current_line = line('.')
   let range = neocomplcache#get_context_filetype_range()
   if range[0][0] != 1
@@ -118,7 +118,7 @@ function! s:get_rsense_current_buffer_option(filename)"{{{
         \     col('.') - (mode() ==# 'n' ? 0 : 1))]
 endfunction"}}}
 
-function! s:get_temp_name()"{{{
+function! s:get_temp_name() "{{{
   let filename =
         \ neocomplcache#util#substitute_path_separator(tempname())
   let range = neocomplcache#get_context_filetype_range()
