@@ -1,7 +1,7 @@
 "=============================================================================
 " FILE: rsense.vim
 " AUTHOR:  Shougo Matsushita <Shougo.Matsu@gmail.com>
-" Last Modified: 02 Dec 2012.
+" Last Modified: 23 Mar 2013.
 " License: MIT license  {{{
 "     Permission is hereby granted, free of charge, to any person obtaining
 "     a copy of this software and associated documentation files (the
@@ -38,6 +38,7 @@ endfunction"}}}
 let s:source = {
       \ 'name' : 'rsense',
       \ 'kind' : 'ftplugin',
+      \ 'mark' : '[R]',
       \ 'filetypes' : { 'ruby' : 1 },
       \}
 
@@ -47,7 +48,7 @@ endfunction"}}}
 
 function! s:source.get_keyword_pos(cur_text) "{{{
   if neocomplcache#is_auto_complete() &&
-        \ a:cur_text !~ '\%([^. *\t]\.\w*\|\h\w*::\)$'
+        \ a:cur_text !~ '\%([^. *\t]\.\w*\|\h\w*::\w*\)$'
     return -1
   endif
 
@@ -60,7 +61,7 @@ function! s:source.get_complete_words(cur_keyword_pos, cur_keyword_str) "{{{
     let args = [
           \ 'ruby', s:get_rsense_command(),
           \ 'code-completion', '--detect-project=' . bufname('%')] +
-          \ s:get_rsense_current_buffer_option(temp)
+          \ s:get_rsense_current_buffer_option(temp, a:cur_keyword_str)
     call add(args, '--prefix=' . a:cur_keyword_str)
     call map(args, "neocomplcache#util#iconv(v:val, &encoding, 'char')")
 
@@ -90,9 +91,9 @@ function! s:source.get_complete_words(cur_keyword_pos, cur_keyword_str) "{{{
 
   for items in filter(map(filter(result,
         \ "v:val =~# '^completion:'"), "split(v:val)[1:]"), "v:val[0] =~ '^\\h'")
-    let candidate = { 'word': items[0], 'menu' : '[R] ' }
+    let candidate = { 'word': items[0] }
     if len(items) > 3
-      let candidate.menu .= items[2]
+      let candidate.menu = '[R] ' . items[2]
       let candidate.kind = kind_dict[items[3]]
     endif
 
@@ -107,7 +108,7 @@ function! s:get_rsense_command() "{{{
         \ . '/bin/rsense'
 endfunction"}}}
 
-function! s:get_rsense_current_buffer_option(filename) "{{{
+function! s:get_rsense_current_buffer_option(filename, cur_keyword_str) "{{{
   let current_line = line('.')
   let range = neocomplcache#get_context_filetype_range()
   if range[0][0] != 1

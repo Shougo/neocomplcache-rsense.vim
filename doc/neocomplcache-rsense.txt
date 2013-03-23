@@ -114,6 +114,9 @@ A: Check if rsense is working, by executing
 ==============================================================================
 CHANGELOG			*neocomplcache-rsense-changelog*
 
+2013-03-23
+- Fixed for neocomplcache ver.8.
+
 2012-11-17
 - Initial version.
 
