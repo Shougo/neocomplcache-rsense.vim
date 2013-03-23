@@ -123,8 +123,12 @@ function! s:get_temp_name(cur_keyword_str) "{{{
   let filename =
         \ neocomplcache#util#substitute_path_separator(tempname())
   let range = neocomplcache#get_context_filetype_range()
-  let lines = add(getline(range[0][0], line('.')-1),
-        \ getline('.')[: -1-len(a:cur_keyword_str)])
+  let [start, end] = [range[0][0], range[1][0]]
+
+  let lines = getline(range[0][0], range[1][0])
+  let lines[line('.')-start] =
+        \ getline('.')[: -1-len(a:cur_keyword_str)]
+
   call writefile(lines, filename)
   return filename
 endfunction"}}}
