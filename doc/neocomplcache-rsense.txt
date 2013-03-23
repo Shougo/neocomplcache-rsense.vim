@@ -116,6 +116,7 @@ CHANGELOG			*neocomplcache-rsense-changelog*
 
 2013-03-23
 - Fixed for neocomplcache ver.8.
+- Improved file output.
 
 2012-11-17
 - Initial version.

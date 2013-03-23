@@ -56,7 +56,7 @@ function! s:source.get_keyword_pos(cur_text) "{{{
 endfunction"}}}
 
 function! s:source.get_complete_words(cur_keyword_pos, cur_keyword_str) "{{{
-  let temp = s:get_temp_name()
+  let temp = s:get_temp_name(a:cur_keyword_str)
   try
     let args = [
           \ 'ruby', s:get_rsense_command(),
@@ -116,14 +116,16 @@ function! s:get_rsense_current_buffer_option(filename, cur_keyword_str) "{{{
   endif
   return ['--file=' . a:filename,
         \ printf('--location=%s:%s', current_line,
-        \     col('.') - (mode() ==# 'n' ? 0 : 1))]
+        \     col('.') - (mode() ==# 'n' ? 0 : 1) - len(a:cur_keyword_str))]
 endfunction"}}}
 
-function! s:get_temp_name() "{{{
+function! s:get_temp_name(cur_keyword_str) "{{{
   let filename =
         \ neocomplcache#util#substitute_path_separator(tempname())
   let range = neocomplcache#get_context_filetype_range()
-  call writefile(getline(range[0][0], range[1][0]), filename)
+  let lines = add(getline(range[0][0], line('.')-1),
+        \ getline('.')[: -1-len(a:cur_keyword_str)])
+  call writefile(lines, filename)
   return filename
 endfunction"}}}
 
